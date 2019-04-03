@@ -3,6 +3,8 @@ package pages;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
+import ru.yandex.qatools.allure.annotations.Step;
+import utility.Screenshot;
 
 public class SignUp extends BasePage {
 
@@ -41,7 +43,8 @@ public class SignUp extends BasePage {
         super();
     }
 
-    private void fillInRegistrationForm() {
+    private void fillInRegistrationForm() throws InterruptedException {
+        Thread.sleep(5000);
         maleTitleRadioBtn.click();
         customerFirstNameInput.sendKeys(("Abc"));
         customerLastNameInput.sendKeys("Defgh");
@@ -53,8 +56,10 @@ public class SignUp extends BasePage {
         phoneNumberInput.sendKeys("654321807");
     }
 
-    public Profile submitFormWithValidData() {
+    @Step
+    public Profile submitFormWithValidData() throws InterruptedException {
         fillInRegistrationForm();
+        Screenshot.captureScreenshot();
         submitButton.click();
         return new Profile();
     }

@@ -2,6 +2,8 @@ package pages;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import ru.yandex.qatools.allure.annotations.Step;
+import utility.Screenshot;
 
 public class SignIn extends BasePage {
 
@@ -15,12 +17,14 @@ public class SignIn extends BasePage {
         super();
     }
 
-    private void fillInCreateAccountForm(String email) {
-        emailInput.sendKeys(email);
+    private void fillInCreateAccountForm() {
+        emailInput.sendKeys("tester@test.com");
     }
 
+    @Step
     public SignUp submitCreateAccountFormWithValidEmail() {
-        fillInCreateAccountForm("tester@test.com");
+        fillInCreateAccountForm();
+        Screenshot.captureScreenshot();
         createAccountButton.click();
         return new SignUp();
     }

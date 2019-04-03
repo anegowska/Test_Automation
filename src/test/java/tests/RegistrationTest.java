@@ -7,7 +7,7 @@ import pages.Home;
 public class RegistrationTest extends TestConfig {
 
     @Test
-    public void userShouldSuccessfullyRegister() {
+    public void userShouldSuccessfullyRegister() throws InterruptedException {
         new Home()
                 .openSignInPage()
                 .submitCreateAccountFormWithValidEmail()
