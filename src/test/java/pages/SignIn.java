@@ -3,9 +3,12 @@ package pages;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import ru.yandex.qatools.allure.annotations.Step;
+import utility.DataFaker;
 import utility.Screenshot;
 
 public class SignIn extends BasePage {
+
+    private DataFaker faker = new DataFaker();
 
     @FindBy(id = "email_create")
     private WebElement emailInput;
@@ -17,13 +20,13 @@ public class SignIn extends BasePage {
         super();
     }
 
-    private void fillInCreateAccountForm() {
-        emailInput.sendKeys("tester@test.com");
+    private void fillInCreateAccountForm(String email) {
+        emailInput.sendKeys(email);
     }
 
     @Step
     public SignUp submitCreateAccountFormWithValidEmail() {
-        fillInCreateAccountForm();
+        fillInCreateAccountForm(faker.getFakeEmail());
         Screenshot.captureScreenshot();
         createAccountButton.click();
         return new SignUp();

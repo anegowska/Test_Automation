@@ -4,9 +4,12 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 import ru.yandex.qatools.allure.annotations.Step;
+import utility.DataFaker;
 import utility.Screenshot;
 
 public class SignUp extends BasePage {
+
+    private DataFaker faker = new DataFaker();
 
     @FindBy(id = "id_gender1")
     private WebElement maleTitleRadioBtn;
@@ -46,14 +49,14 @@ public class SignUp extends BasePage {
     private void fillInRegistrationForm() throws InterruptedException {
         Thread.sleep(5000);
         maleTitleRadioBtn.click();
-        customerFirstNameInput.sendKeys(("Abc"));
-        customerLastNameInput.sendKeys("Defgh");
-        passwordInput.sendKeys("pass1234");
-        addressInput.sendKeys("Testaddress 123");
-        cityInput.sendKeys("Testcity");
+        customerFirstNameInput.sendKeys(faker.getFakeFirstName());
+        customerLastNameInput.sendKeys(faker.getFakeLastName());
+        passwordInput.sendKeys(faker.getFakePassword());
+        addressInput.sendKeys(faker.getFakeAddress());
+        cityInput.sendKeys(faker.getFakeCity());
         new Select(stateSelect).selectByValue("1");
-        zipCodeInput.sendKeys("65267");
-        phoneNumberInput.sendKeys("654321807");
+        zipCodeInput.sendKeys(faker.getFakeZipCode());
+        phoneNumberInput.sendKeys(faker.getFakePhoneNumber());
     }
 
     @Step
