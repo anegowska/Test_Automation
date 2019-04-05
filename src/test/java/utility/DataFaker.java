@@ -42,8 +42,4 @@ public class DataFaker {
         return faker.phoneNumber().cellPhone();
     }
 
-    public static void main(String[] args) {
-        DataFaker dataFaker = new DataFaker();
-        System.out.println(dataFaker.getFakeCity());
-    }
 }
