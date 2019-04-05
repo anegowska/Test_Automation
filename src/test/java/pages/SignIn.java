@@ -16,6 +16,15 @@ public class SignIn extends BasePage {
     @FindBy(id = "SubmitCreate")
     private WebElement createAccountButton;
 
+    @FindBy(id = "email")
+    private WebElement registeredEmail;
+
+    @FindBy(id = "passwd")
+    private WebElement password;
+
+    @FindBy(id = "SubmitLogin")
+    private WebElement signInButton;
+
     public SignIn() {
         super();
     }
@@ -24,11 +33,28 @@ public class SignIn extends BasePage {
         emailInput.sendKeys(email);
     }
 
+    private void fillInSignInFormWithEmail() {
+        registeredEmail.sendKeys("admin@admin.com");
+    }
+
+    private void fillInSignInFormWithPassword() {
+        password.sendKeys("admin1234");
+    }
+
     @Step
     public SignUp submitCreateAccountFormWithValidEmail() {
         fillInCreateAccountForm(faker.getFakeEmail());
         Screenshot.captureScreenshot();
         createAccountButton.click();
         return new SignUp();
+    }
+
+    @Step
+    public Profile submitSignInFormWithValidEmailAndPasswd() {
+        fillInSignInFormWithEmail();
+        fillInSignInFormWithPassword();
+        Screenshot.captureScreenshot();
+        signInButton.click();
+        return new Profile();
     }
 }

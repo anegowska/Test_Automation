@@ -15,7 +15,7 @@ public class Profile extends BasePage {
     }
 
     @Step
-    public void userShouldBeSuccessfullyRegistered() {
+    public void userShouldBeSuccessfullyRegisteredOrSignIn() {
         String profilePageHeaderText = profilePageHeader.getText();
         String expectedHeaderText = "MY ACCOUNT";
 
