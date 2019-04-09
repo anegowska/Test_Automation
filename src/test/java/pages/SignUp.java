@@ -15,7 +15,7 @@ import java.util.List;
 public class SignUp extends BasePage {
 
     private DataFaker faker = new DataFaker();
-    public static final String EXPECTED_MESSAGE = "firstname is required";
+    private static final String EXPECTED_MESSAGE = "firstname is required.";
 
     @FindBy(id = "id_gender1")
     private WebElement maleTitleRadioBtn;
@@ -47,7 +47,7 @@ public class SignUp extends BasePage {
     @FindBy(id = "submitAccount")
     private WebElement submitButton;
 
-    @FindBy(css = ".alert alert-danger li")
+    @FindBy(css = "#center_column > .alert li")
     private List<WebElement> alertMessages;
 
 

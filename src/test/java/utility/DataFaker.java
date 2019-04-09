@@ -35,11 +35,10 @@ public class DataFaker {
     }
 
     public String getFakeZipCode() {
-        return faker.address().zipCode();
+        return faker.address().zipCode().substring(0,5);
     }
 
     public String getFakePhoneNumber() {
         return faker.phoneNumber().cellPhone();
     }
-
 }
