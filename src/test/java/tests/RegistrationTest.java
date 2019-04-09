@@ -14,4 +14,13 @@ public class RegistrationTest extends TestConfig {
                 .submitFormWithValidData()
                 .userShouldBeSuccessfullyRegisteredOrSignIn();
     }
+
+    @Test
+    public void registrationWithInvalidDataShouldFail() throws InterruptedException {
+        new Home()
+                .openSignInPage()
+                .submitCreateAccountFormWithValidEmail()
+                .submitFormWithInvalidData()
+                .userShouldSeeRegistrationFormAlert();
+    }
 }
