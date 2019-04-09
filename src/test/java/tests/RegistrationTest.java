@@ -14,12 +14,4 @@ public class RegistrationTest extends TestConfig {
                 .submitFormWithValidData()
                 .userShouldBeSuccessfullyRegisteredOrSignIn();
     }
-
-    @Test
-    public void userShouldSuccessfullySignIn() {
-        new Home()
-                .openSignInPage()
-                .submitSignInFormWithValidEmailAndPasswd()
-                .userShouldBeSuccessfullyRegisteredOrSignIn();
-    }
 }
