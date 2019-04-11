@@ -1,5 +1,6 @@
 package pages;
 
+import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import ru.yandex.qatools.allure.annotations.Step;
@@ -8,6 +9,9 @@ import utility.Screenshot;
 
 public class SignIn extends BasePage {
 
+    private static final String ADMIN_EMAIL = "admin@admin.com";
+    private static final String ADMIN_PASSWORD = "admin1234";
+    public static final String AUTHENTICATION_FAILED = "Authentication failed.";
     private DataFaker faker = new DataFaker();
 
     @FindBy(id = "email_create")
@@ -25,6 +29,9 @@ public class SignIn extends BasePage {
     @FindBy(id = "SubmitLogin")
     private WebElement signInButton;
 
+    @FindBy(css = "#center_column > .alert li")
+    private WebElement alertMessage;
+
     public SignIn() {
         super();
     }
@@ -33,12 +40,19 @@ public class SignIn extends BasePage {
         emailInput.sendKeys(email);
     }
 
-    private void fillInSignInFormWithEmail() {
-        registeredEmail.sendKeys("admin@admin.com");
+    private void fillInSignInFormWithEmail(boolean isCorrectEmail) {
+        if (isCorrectEmail) {
+            registeredEmail.sendKeys(ADMIN_EMAIL);
+        }
+        registeredEmail.sendKeys(faker.getFakeEmail());
+
     }
 
-    private void fillInSignInFormWithPassword() {
-        password.sendKeys("admin1234");
+    private void fillInSignInFormWithPassword(boolean isCorrectPasswd) {
+        if (isCorrectPasswd) {
+            password.sendKeys(ADMIN_PASSWORD);
+        }
+        password.sendKeys(faker.getFakePassword());
     }
 
     @Step
@@ -51,10 +65,24 @@ public class SignIn extends BasePage {
 
     @Step
     public Profile submitSignInFormWithValidEmailAndPasswd() {
-        fillInSignInFormWithEmail();
-        fillInSignInFormWithPassword();
+        fillInSignInFormWithEmail(true);
+        fillInSignInFormWithPassword(true);
         Screenshot.captureScreenshot();
         signInButton.click();
         return new Profile();
+    }
+
+    @Step
+    public SignIn submitSignInFormWithInvalidEmailAndPasswd() {
+        fillInSignInFormWithEmail(false);
+        fillInSignInFormWithPassword(false);
+        Screenshot.captureScreenshot();
+        signInButton.click();
+        return this;
+    }
+
+    @Step
+    public void userShouldSeeSignInFormAlert() {
+        Assert.assertEquals(AUTHENTICATION_FAILED, alertMessage.getText());
     }
 }

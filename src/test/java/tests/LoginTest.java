@@ -13,4 +13,12 @@ public class LoginTest extends TestConfig {
                 .submitSignInFormWithValidEmailAndPasswd()
                 .userShouldBeSuccessfullyRegisteredOrSignIn();
     }
+
+    @Test
+    public void loginWithInvalidDataShouldFail() {
+        new Home()
+                .openSignInPage()
+                .submitSignInFormWithInvalidEmailAndPasswd()
+                .userShouldSeeSignInFormAlert();
+    }
 }
