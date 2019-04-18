@@ -43,16 +43,17 @@ public class SignIn extends BasePage {
     private void fillInSignInFormWithEmail(boolean isCorrectEmail) {
         if (isCorrectEmail) {
             registeredEmail.sendKeys(ADMIN_EMAIL);
+        }else {
+            registeredEmail.sendKeys(faker.getFakeEmail());
         }
-        registeredEmail.sendKeys(faker.getFakeEmail());
-
     }
 
     private void fillInSignInFormWithPassword(boolean isCorrectPasswd) {
         if (isCorrectPasswd) {
             password.sendKeys(ADMIN_PASSWORD);
+        }else {
+            password.sendKeys(faker.getFakePassword());
         }
-        password.sendKeys(faker.getFakePassword());
     }
 
     @Step
