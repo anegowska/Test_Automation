@@ -7,7 +7,7 @@ import pages.Home;
 public class AddToBasketTest extends TestConfig {
 
     @Test
-    public void userShouldSuccessfullyAddProductToCart() throws InterruptedException {
+    public void userShouldSuccessfullyAddProductToCart() {
         new Home()
                 .goToDressesPage()
                 .addProductToCart()
