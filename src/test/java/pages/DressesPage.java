@@ -23,7 +23,7 @@ public class DressesPage extends BasePage {
     }
 
     @Step
-    public DressesPage addProductToBasket() {
+    public DressesPage addProductToCart() {
         listOfProducts.click();
         addToCartButton.click();
         Screenshot.captureScreenshot();
