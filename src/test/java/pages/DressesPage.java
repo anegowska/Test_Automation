@@ -17,6 +17,12 @@ public class DressesPage extends BasePage {
     @FindBy(xpath = "//i[@class='icon-ok']")
     private WebElement confirmationIcon;
 
+    @FindBy(xpath = "//span[@title='Close window']")
+    private WebElement closeIcon;
+
+    @FindBy(css = "[title=\"View my shopping cart\"]")
+    private WebElement cartButton;
+
 
     public DressesPage() {
         super();
@@ -31,7 +37,22 @@ public class DressesPage extends BasePage {
     }
 
     @Step
-    public void userShouldSeeAdditionConfirmationToCart() {
+    public void userShouldSeeConfirmationOfAddingToCart() {
         Actions.waitForElementVisibility(confirmationIcon);
+    }
+
+    @Step
+    public DressesPage closeConfirmationWindow() throws InterruptedException {
+        Thread.sleep(5000);
+        closeIcon.click();
+        Screenshot.captureScreenshot();
+        return this;
+    }
+
+    @Step
+    public Cart goToCart() {
+        cartButton.click();
+        Screenshot.captureScreenshot();
+        return new Cart();
     }
 }
